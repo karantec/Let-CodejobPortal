@@ -7,7 +7,7 @@ const Home = () => {
   const getData = async () => {
     try {
       const res = await fetch(
-        "https://sheet.best/api/sheets/bff990d0-8ada-43e9-97eb-0ad668bb19ec?_format=index"
+        "https://sheet.best/api/sheets/3c4f0cfe-b47a-4db3-835a-10b00efa643b"
       );
       const data = await res.json();
       setData(Object.keys(data).map((key) => data[key]));
@@ -20,22 +20,22 @@ const Home = () => {
     getData();
   }, []);
 
-  const handleDelete = async (rowIndex) => {
-    try {
-      const res = await fetch(
-        `https://sheet.best/api/sheets/bff990d0-8ada-43e9-97eb-0ad668bb19ec/${rowIndex}`,
-        {
-          method: "DELETE",
-        }
-      );
-      if (res.ok) {
-        const updatedData = data.filter((_, i) => i !== rowIndex);
-        setData(updatedData);
-      }
-    } catch (error) {
-      console.log(error);
-    }
-  };
+  // const handleDelete = async (rowIndex) => {
+  //   try {
+  //     const res = await fetch(
+  //       `https://sheet.best/api/sheets/3c4f0cfe-b47a-4db3-835a-10b00efa643b/${rowIndex}`,
+  //       {
+  //         method: "DELETE",
+  //       }
+  //     );
+  //     if (res.ok) {
+  //       const updatedData = data.filter((_, i) => i !== rowIndex);
+  //       setData(updatedData);
+  //     }
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
   return (
     <div className="accordion" id="accordionExample">
       {data?.map((item, i) => (
@@ -49,7 +49,8 @@ const Home = () => {
               aria-expanded="true"
               aria-controls={`collapse${i}`}
             >
-              {item.date}
+            Company Name:- 
+              {item.CompanyName}
             </button>
           </h2>
           <div
@@ -60,23 +61,25 @@ const Home = () => {
           >
             <div className="accordion-body">
               <div className="d-flex justify-content-between align-items-center">
+             
                 <span>
-                  <strong className="display-6">{item.name}</strong> ---{" "}
-                  {item.email}
+                  <strong className="text-center fw-bold  fs-5 font-monospace">{item.CompanyName}</strong>
+                  <p className="text-center fs-5 fw-bold font-monospace">{item.JobDescriptionType}</p>
                 </span>
                 <span>
-                  <Link to={`/edit/${i}`} style={{ textDecoration: "none" }}>
+                  {/* <Link to={`/edit/${i}`} style={{ textDecoration: "none" }}>
                     Edit
-                  </Link>
-                  <button
+                  </Link> */}
+                  {/* <button
                     className="btn btn-sm btn-danger ms-1"
                     onClick={() => handleDelete(i)}
                   >
                     X
-                  </button>
+                  </button> */}
                 </span>
               </div>
-              <p>{item.message}</p>
+              <p>Apply Link ⬇️</p>
+              <a href={item.ApplyLink} target="_blank" rel="noreferrer">{item.ApplyLink}</a>
             </div>
           </div>
         </div>

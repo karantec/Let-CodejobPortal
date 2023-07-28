@@ -6,16 +6,16 @@ const Edit = () => {
   const history = useHistory();
   const { rowIndex } = useParams();
   const [data, setData] = useState({
-    name: "",
-    email: "",
-    message: "",
+    CompanyName: "",
+    Description: "",
+    Applylink:"",
     date: new Date().toString(),
   });
 
   const getData = async () => {
     try {
       const res = await fetch(
-        `https://sheet.best/api/sheets/bff990d0-8ada-43e9-97eb-0ad668bb19ec/${rowIndex}`
+        `https://sheet.best/api/sheets/3c4f0cfe-b47a-4db3-835a-10b00efa643b/${rowIndex}`
       );
       const data = await res.json();
       setData(data[0]);
@@ -35,7 +35,7 @@ const Edit = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `https://sheet.best/api/sheets/bff990d0-8ada-43e9-97eb-0ad668bb19ec/${rowIndex}`,
+        `https://sheet.best/api/sheets/3c4f0cfe-b47a-4db3-835a-10b00efa643b/${rowIndex}`,
         {
           method: "PUT",
           headers: {
@@ -56,39 +56,39 @@ const Edit = () => {
     <form style={{ maxWidth: 500, margin: "auto" }} onSubmit={handleSubmit}>
       <h1 className="text-muted text-center">Edit</h1>
       <div className="mb-3">
-        <label htmlFor="name" className="form-label">
-          Name
+        <label htmlFor="CompanyName" className="form-label">
+         CompanyName
         </label>
         <input
           type="text"
           className="form-control"
-          name="name"
-          value={data.name}
+          name="CompanyName"
+          value={data.CompanyName}
           onChange={handleChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="message" className="form-label">
-          Message
+        <label htmlFor="JobType&&Description" className="form-label">
+          Job Type & Description
         </label>
         <textarea
-          name="message"
+          name="Description"
           cols="30"
           rows="3"
           className="form-control"
-          value={data.message}
+          value={data.Description}
+          onChange={handleChange}
+        />
+      </div>
+      <div className="mb-3">
+        <label htmlFor="ApplyLink" className="form-label">
+          Apply Link
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          name="Applylink"
+          value={data.Applylink}
           onChange={handleChange}
         />
       </div>

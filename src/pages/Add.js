@@ -4,10 +4,10 @@ import { useHistory } from "react-router-dom";
 const Add = () => {
   const history = useHistory();
   const [data, setData] = useState({
-    name: "",
-    email: "",
-    message: "",
-    date: new Date().toString(),
+    Companyname: "",
+    Description: "",
+    Applylink:"",
+   
   });
 
   const handleChange = (e) =>
@@ -38,43 +38,45 @@ const Add = () => {
       <h1 className="text-muted text-center">Add</h1>
       <div className="mb-3">
         <label htmlFor="name" className="form-label">
-          Name
+         CompanyName
         </label>
         <input
           type="text"
           className="form-control"
-          name="name"
-          value={data.name}
+          name="Companyname"
+          value={data.Companyname}
           onChange={handleChange}
         />
       </div>
       <div className="mb-3">
-        <label htmlFor="email" className="form-label">
-          Email
-        </label>
-        <input
-          type="email"
-          className="form-control"
-          name="email"
-          value={data.email}
-          onChange={handleChange}
-        />
-      </div>
-      <div className="mb-3">
-        <label htmlFor="message" className="form-label">
-          Message
+        <label htmlFor="JobType&&Description" className="form-label">
+          Job Type & Description
         </label>
         <textarea
-          name="message"
+          name="Description"
           cols="30"
           rows="3"
           className="form-control"
-          value={data.message}
+          value={data.Description}
           onChange={handleChange}
         />
       </div>
+     
+      <div className="mb-3">
+        <label htmlFor="ApplyLink" className="form-label">
+          Apply Link
+        </label>
+        <input
+          type="text"
+          className="form-control"
+          name="Applylink"
+          value={data.Applylink}
+          onChange={handleChange}
+        />
+      </div>
+      
       <div className="text-center">
-        <button className="btn btn-primary">Add</button>
+        <button className="btn btn-primary">Add Job</button>
       </div>
     </form>
   );
